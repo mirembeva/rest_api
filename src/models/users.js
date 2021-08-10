@@ -12,7 +12,8 @@ const UserSchema = Schema({
     phone: {
         type: String,
         required: true
-    }
+    },
+    password:String
 })
 
 const User = model('User', UserSchema)

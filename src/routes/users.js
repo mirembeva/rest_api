@@ -1,10 +1,14 @@
 const { UserController } = require('../controllers/users')
+const {loginUser, loginRequired} = require('../authentication/auth')
+
 
 module.exports = (app) => {
     app.route('/users')
-        .get(UserController.getusers)
-        .post(UserController.createNewUser);
+        .get(loginRequired,UserController.getusers)
+        .post(loginRequired,UserController.createNewUser);
     app.route('/users/:id')
         .put(UserController.updateUser)
         .delete(UserController.deleteUser);
+    app.route('/users/login')
+        .post(UserController.loginUser)
 }
