@@ -17,13 +17,14 @@ exports.UserController = {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(req.body.password,salt)
         try {
-            
+            console.log(req.body)
             const response = await UserModel.create({
                 firstName:req.body.firstName,
                 email:req.body.email,
                 phone:req.body.phone,
                 password:hashedPassword,
             });
+            
             return res.json(response);
         } catch(err){
             console.log(err)
